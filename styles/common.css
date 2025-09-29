@@ -39,8 +39,8 @@ body {
 /* Header Styles */
 .header {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 16px;
     padding: 16px 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 20px;
@@ -48,6 +48,120 @@ body {
     top: 0;
     background-color: var(--bg-primary);
     z-index: 100;
+}
+
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.brand-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex: 1;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid var(--accent-primary);
+    flex-shrink: 0;
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.brand-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.restaurant-name {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.restaurant-tagline {
+    font-size: 12px;
+    color: var(--text-secondary);
+    margin: 0;
+    font-weight: 500;
+}
+
+.location-selector {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 140px;
+}
+
+.location-selector:hover {
+    border-color: var(--accent-primary);
+    background-color: var(--bg-tertiary);
+}
+
+.location-icon {
+    width: 18px;
+    height: 18px;
+    fill: var(--accent-primary);
+    flex-shrink: 0;
+}
+
+.location-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+    min-width: 0;
+}
+
+.location-label {
+    font-size: 10px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.location-address {
+    font-size: 12px;
+    color: var(--text-primary);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dropdown-arrow {
+    width: 16px;
+    height: 16px;
+    fill: var(--text-muted);
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.location-selector:hover .dropdown-arrow {
+    transform: rotate(180deg);
 }
 
 .header h1 {
@@ -154,6 +268,28 @@ body {
 
 .search-box input::placeholder {
     color: var(--text-muted);
+}
+
+.filter-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    padding: 8px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    margin-left: 8px;
+}
+
+.filter-btn:hover {
+    color: var(--accent-primary);
+    background-color: rgba(255, 127, 80, 0.1);
+}
+
+.filter-btn svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
 }
 
 /* Button Styles */
@@ -370,6 +506,36 @@ body {
 
 /* Responsive Design */
 @media (min-width: 768px) {
+    .header-top {
+        gap: 24px;
+    }
+    
+    .logo {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .restaurant-name {
+        font-size: 28px;
+    }
+    
+    .restaurant-tagline {
+        font-size: 14px;
+    }
+    
+    .location-selector {
+        min-width: 180px;
+        padding: 12px 16px;
+    }
+    
+    .location-label {
+        font-size: 11px;
+    }
+    
+    .location-address {
+        font-size: 14px;
+    }
+    
     .container {
         max-width: 768px;
         padding: 0 24px 80px;
@@ -386,6 +552,10 @@ body {
 }
 
 @media (min-width: 1024px) {
+    .header-top {
+        gap: 32px;
+    }
+    
     .container {
         max-width: 1024px;
         padding: 0 32px 80px;
