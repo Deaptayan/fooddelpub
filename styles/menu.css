@@ -1,5 +1,23 @@
 /* Menu Page Styles */
 
+/* Fix for unwanted background elements in header */
+.header {
+    position: relative;
+    z-index: 100;
+    background-color: var(--bg-primary);
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--bg-primary);
+    z-index: -1;
+}
+
 /* Filters Section */
 .filters-section {
     margin-bottom: 24px;
@@ -312,6 +330,19 @@
     font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
+    z-index: 1;
+}
+
+/* Ensure menu items don't interfere with header */
+.menu-item {
+    position: relative;
+    z-index: 1;
+}
+
+.menu-item .popular-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
 }
 
 /* Search Container Toggle */
