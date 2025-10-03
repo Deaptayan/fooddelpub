@@ -401,6 +401,79 @@ function showFavoritesModal() {
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
+function showPaymentMethodsModal() {
+    const modalHTML = `
+        <div class="settings-overlay active" id="paymentModal">
+            <div class="settings-modal">
+                <div class="settings-header">
+                    <h3>Payment Methods</h3>
+                    <button class="close-settings" onclick="closeModal('paymentModal')">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="settings-content">
+                    <div class="settings-option">
+                        <div class="settings-option-info">
+                            <h4>Credit Card</h4>
+                            <p>**** **** **** 4242</p>
+                        </div>
+                        <button class="btn-secondary" onclick="editPaymentMethod(0)">Edit</button>
+                    </div>
+                    <button class="btn-primary" onclick="addNewPaymentMethod()" style="width: 100%; margin-top: 16px;">
+                        Add New Payment Method
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function showNotificationSettings() {
+    const modalHTML = `
+        <div class="settings-overlay active" id="notificationModal">
+            <div class="settings-modal">
+                <div class="settings-header">
+                    <h3>Notification Settings</h3>
+                    <button class="close-settings" onclick="closeModal('notificationModal')">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="settings-content">
+                    <div class="settings-option">
+                        <div class="settings-option-info">
+                            <h4>Order Updates</h4>
+                            <p>Get notified about order status</p>
+                        </div>
+                        <div class="settings-toggle active" onclick="toggleSetting(this)"></div>
+                    </div>
+                    <div class="settings-option">
+                        <div class="settings-option-info">
+                            <h4>Promotional Offers</h4>
+                            <p>Receive special deals and offers</p>
+                        </div>
+                        <div class="settings-toggle" onclick="toggleSetting(this)"></div>
+                    </div>
+                    <div class="settings-option">
+                        <div class="settings-option-info">
+                            <h4>New Menu Items</h4>
+                            <p>Get notified about new additions</p>
+                        </div>
+                        <div class="settings-toggle active" onclick="toggleSetting(this)"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
 function showHelpModal() {
     const modalHTML = `
         <div class="settings-overlay active" id="helpModal">
@@ -439,7 +512,7 @@ function showHelpModal() {
             </div>
         </div>
     `;
-    
+
     document.body.insertAdjacentHTML('beforeend', modalHTML);
 }
 
@@ -503,4 +576,12 @@ window.showFAQ = () => {
 
 window.reportIssue = () => {
     window.CommonUtils.showToast('Issue reporting form would open here', 'info');
+};
+
+window.editPaymentMethod = (index) => {
+    window.CommonUtils.showToast('Payment method editing would open here', 'info');
+};
+
+window.addNewPaymentMethod = () => {
+    window.CommonUtils.showToast('Add payment method form would open here', 'info');
 };
