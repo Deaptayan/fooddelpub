@@ -40,37 +40,41 @@ body {
 .header {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 16px 0;
+    gap: 12px;
+    padding: 12px 0;
     border-bottom: 1px solid var(--border);
     margin-bottom: 20px;
     position: sticky;
     top: 0;
-    background-color: var(--bg-primary);
+    background-color: rgba(18, 18, 18, 0.95);
+    backdrop-filter: blur(10px);
     z-index: 100;
+    isolation: isolate;
 }
 
 .header-top {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
+    gap: 12px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
 .brand-section {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 10px;
     flex: 1;
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
-    border-radius: 12px;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
     overflow: hidden;
-    border: 2px solid var(--accent-primary);
+    border: 1.5px solid var(--accent-primary);
     flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(255, 127, 80, 0.2);
 }
 
 .logo img {
@@ -82,48 +86,48 @@ body {
 .brand-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 0;
 }
 
 .restaurant-name {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text-primary);
     margin: 0;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
 }
 
 .restaurant-tagline {
-    font-size: 12px;
-    color: var(--text-secondary);
+    font-size: 11px;
+    color: var(--text-muted);
     margin: 0;
-    font-weight: 500;
+    font-weight: 400;
+    letter-spacing: 0.3px;
 }
 
 .location-selector {
     display: flex;
     align-items: center;
-    gap: 8px;
-    background-color: var(--bg-secondary);
+    gap: 6px;
+    background-color: transparent;
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 8px 12px;
+    border-radius: 10px;
+    padding: 6px 10px;
     cursor: pointer;
     transition: all 0.2s ease;
-    min-width: 140px;
+    min-width: 0;
+    max-width: 160px;
 }
 
 .location-selector:hover {
     border-color: var(--accent-primary);
-    background-color: var(--bg-tertiary);
+    background-color: rgba(255, 127, 80, 0.05);
 }
 
 .location-icon {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     fill: var(--accent-primary);
     flex-shrink: 0;
 }
@@ -131,20 +135,23 @@ body {
 .location-info {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: 1px;
     flex: 1;
     min-width: 0;
+    overflow: hidden;
 }
 
 .location-label {
-    font-size: 10px;
-    color: var(--text-secondary);
+    font-size: 9px;
+    color: var(--text-muted);
     font-weight: 500;
     text-transform: uppercase;
+    letter-spacing: 0.5px;
+    line-height: 1;
 }
 
 .location-address {
-    font-size: 12px;
+    font-size: 11px;
     color: var(--text-primary);
     font-weight: 600;
     white-space: nowrap;
@@ -153,15 +160,15 @@ body {
 }
 
 .dropdown-arrow {
-    width: 16px;
-    height: 16px;
+    width: 14px;
+    height: 14px;
     fill: var(--text-muted);
     flex-shrink: 0;
     transition: transform 0.2s ease;
 }
 
 .location-selector:hover .dropdown-arrow {
-    transform: rotate(180deg);
+    fill: var(--accent-primary);
 }
 
 .header h1 {
@@ -192,24 +199,29 @@ body {
 
 .header-actions {
     display: flex;
-    gap: 8px;
+    gap: 12px;
+    align-items: center;
 }
 
-.search-toggle, .settings-btn {
+.search-toggle, .settings-btn, .back-btn {
     background: none;
     border: none;
     color: var(--text-primary);
     padding: 8px;
     border-radius: 8px;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.search-toggle:hover, .settings-btn:hover {
+.search-toggle:hover, .settings-btn:hover, .back-btn:hover {
     background-color: var(--bg-tertiary);
+    color: var(--accent-primary);
 }
 
-.search-toggle svg, .settings-btn svg {
+.search-toggle svg, .settings-btn svg, .back-btn svg {
     width: 24px;
     height: 24px;
     fill: currentColor;
@@ -239,22 +251,29 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    background-color: var(--bg-secondary);
-    border-radius: 12px;
-    padding: 12px 16px;
+    background-color: rgba(30, 30, 30, 0.6);
+    border-radius: 10px;
+    padding: 10px 14px;
     border: 1px solid var(--border);
-    transition: border-color 0.2s ease;
+    transition: all 0.2s ease;
 }
 
 .search-box:focus-within {
     border-color: var(--accent-primary);
+    background-color: var(--bg-secondary);
+    box-shadow: 0 0 0 3px rgba(255, 127, 80, 0.1);
 }
 
 .search-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     fill: var(--text-muted);
-    margin-right: 12px;
+    margin-right: 10px;
+    transition: fill 0.2s ease;
+}
+
+.search-box:focus-within .search-icon {
+    fill: var(--accent-primary);
 }
 
 .search-box input {
@@ -262,23 +281,25 @@ body {
     background: none;
     border: none;
     color: var(--text-primary);
-    font-size: 16px;
+    font-size: 14px;
     outline: none;
+    font-weight: 400;
 }
 
 .search-box input::placeholder {
     color: var(--text-muted);
+    font-size: 14px;
 }
 
 .filter-btn {
     background: none;
     border: none;
     color: var(--text-muted);
-    padding: 8px;
-    border-radius: 8px;
+    padding: 6px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s ease;
-    margin-left: 8px;
+    margin-left: 6px;
 }
 
 .filter-btn:hover {
@@ -287,8 +308,8 @@ body {
 }
 
 .filter-btn svg {
-    width: 18px;
-    height: 18px;
+    width: 16px;
+    height: 16px;
     fill: currentColor;
 }
 
