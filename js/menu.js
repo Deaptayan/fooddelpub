@@ -175,8 +175,8 @@ function createMenuItemHTML(item) {
 
     return `
         <div class="menu-item" data-item-id="${item.id}">
-            ${item.isPopular ? '<div class="popular-badge">Popular</div>' : ''}
             <div class="menu-item-content">
+                ${item.isPopular ? '<div class="popular-badge">Popular</div>' : ''}
                 <img src="${item.imageURL}" alt="${item.name}" class="menu-item-image" loading="lazy">
                 <div class="menu-item-info">
                     <div class="menu-item-header">
