@@ -201,7 +201,10 @@ function createOrderCardHTML(order, isCurrent) {
                 <div class="order-items">
                     ${order.items.slice(0, 3).map(item => `
                         <div class="order-item">
-                            <img src="${item.imageURL}" alt="${item.name}" class="order-item-image">
+                            <img src="${item.imageURL || 'https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'}"
+                                 alt="${item.name}"
+                                 class="order-item-image"
+                                 onerror="this.src='https://images.pexels.com/photos/1640777/pexels-photo-1640777.jpeg?auto=compress&cs=tinysrgb&w=400'">
                             <div class="order-item-info">
                                 <span class="order-item-name">${item.name}</span>
                                 <div class="order-item-details">
@@ -222,14 +225,14 @@ function createOrderCardHTML(order, isCurrent) {
                             <svg viewBox="0 0 24 24">
                                 <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
                             </svg>
-                            Track Order
+                            ${getTrackButtonText(order.mode)}
                         </a>
                     ` : ''}
-                    <button class="order-action-btn ${isCurrent ? '' : 'primary'}" 
+                    <button class="order-action-btn ${isCurrent ? '' : 'primary'}"
                             data-action="reorder" data-order-id="${order.id}">
                         Reorder
                     </button>
-                    ${!isCurrent && order.status === 'delivered' ? `
+                    ${!isCurrent && (order.status === 'delivered' || order.status === 'completed') ? `
                         <button class="order-action-btn" data-action="review" data-order-id="${order.id}">
                             Review
                         </button>
@@ -326,6 +329,19 @@ function getStatusText(status) {
 
 function capitalizeFirst(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getTrackButtonText(mode) {
+    switch (mode) {
+        case 'delivery':
+            return 'Track Order';
+        case 'takeaway':
+            return 'View Status';
+        case 'dine-in':
+            return 'View Order';
+        default:
+            return 'Track Order';
+    }
 }
 
 // Listen for real-time order updates
